@@ -1,0 +1,28 @@
+RewriteEngine On
+RewriteBase /itgenius/
+
+# Error 404 and 500
+ErrorDocument 404 /error_404.php
+ErrorDocument 500 /error_500.php
+
+# stuff to let through (ignore)
+RewriteCond %{REQUEST_URI} "/blog/" [OR]
+RewriteCond %{REQUEST_URI} "/work/" [OR]
+RewriteCond %{REQUEST_URI} "/amail/" [OR]
+RewriteCond %{REQUEST_URI} "/amnuay/" [OR]
+RewriteCond %{REQUEST_URI} "/admin/" [OR]
+RewriteCond %{REQUEST_URI} "/workshop/" [OR]
+RewriteCond %{REQUEST_URI} "/download/" [OR]
+RewriteCond %{REQUEST_URI} "/itgeniusnew/" [OR]
+RewriteCond %{REQUEST_URI} "/training_calendar/" [OR]
+RewriteCond %{REQUEST_URI} "/phpmailer/" [OR]
+RewriteCond %{REQUEST_URI} "/images/"
+
+RewriteRule (.*) $1 [L]
+
+RewriteRule ^/?([^/]*)\.html$ course-detail.php?path_url=$1.html
+RewriteRule ^article/([^/]*)\.html$ article_detail.php?path_url=$1.html
+
+RewriteRule ^search/tag/([^/]*)\.*$ search_result.php?keyword=$1
+RewriteRule ^article/category/([^/]*)\.*$ article_category.php?cat=$1
+RewriteRule ^article/tag/([^/]*)\.*$ tag_article.php?tag=$1
